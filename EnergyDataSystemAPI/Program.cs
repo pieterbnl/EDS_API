@@ -1,4 +1,5 @@
 using EnergyDataSystem;
+using EnergyDataSystem.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -20,7 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>
     (options => options.UseSqlServer(connectionString));
 
 // Inject dependencies - implementation of the repo's when called
-//
+builder.Services.AddScoped<IAddressRepository, SqlAddressRepository>();
 
 // Trigger creation of Automapper maps specified in AutoMapperProfiles.cs
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
