@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyDataSystem", "EnergyDataSystem\EnergyDataSystem.csproj", "{BF9AD4FC-73C9-44DF-9C01-B5ED6298A789}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyDataSystemAPI", "EnergyDataSystemAPI\EnergyDataSystemAPI.csproj", "{68D4C0CB-1DC1-4AA3-B9EE-89513C7FC335}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BF9AD4FC-73C9-44DF-9C01-B5ED6298A789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF9AD4FC-73C9-44DF-9C01-B5ED6298A789}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF9AD4FC-73C9-44DF-9C01-B5ED6298A789}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF9AD4FC-73C9-44DF-9C01-B5ED6298A789}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68D4C0CB-1DC1-4AA3-B9EE-89513C7FC335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68D4C0CB-1DC1-4AA3-B9EE-89513C7FC335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68D4C0CB-1DC1-4AA3-B9EE-89513C7FC335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68D4C0CB-1DC1-4AA3-B9EE-89513C7FC335}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
