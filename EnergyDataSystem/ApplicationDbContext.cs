@@ -35,4 +35,5 @@ public class ApplicationDbContext : DbContext
     public DbSet<EnergyMeter> EnergyMeters { get; set; }
     public DbSet<Owner> Owners { get; set; }
     public DbSet<Phonenumber> Phonenumbers { get; set; }
+    public DbSet<Measurement> Measurements { get; set; }
 }

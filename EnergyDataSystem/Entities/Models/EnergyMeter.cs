@@ -19,4 +19,5 @@ public class EnergyMeter
 
     // Navigation properties
     public Building Building { get; set; } // An energy meter can belong to one building only
+    public ICollection<Measurement> Measurements { get; set; } // An energy meter can have multiple measurements registered
 }
