@@ -20,11 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
     <Folder Include="Entities\Configurations\" />
     <Folder Include="Entities\Seeding\" />
     <Folder Include="Utilities\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>
