@@ -12,10 +12,8 @@ public class Contact
     public string Title { get; set; }
     public string Role { get; set; }
     public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public bool IsDeleted { get; set; }
-    public int OwnerId { get; set; }
-    public int AddressId { get; set; }
+    public string LastName { get; set; }    
+    public int AddressId { get; set; }    
 
     // Navigation properties
     public Owner Owner { get; set; }

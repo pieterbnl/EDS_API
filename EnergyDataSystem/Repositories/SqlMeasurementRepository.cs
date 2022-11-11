@@ -8,29 +8,24 @@ using System.Threading.Tasks;
 
 namespace EnergyDataSystem.Repositories;
 
-public class SqlBuildingRepository : IBuildingRepository
+public class SqlMeasurementRepository : IMeasurementRepository
 {
-    public Task<Building> CreateBuildingAsync(Building building)
+    public Task<Measurement> CreateMeasurementAsync(Measurement measurement)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Building> DeleteBuildingAsync(int buildingId)
+    public Task<Measurement> DeleteMeasurementAsync(int measurementId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Building> GetBuildingAsync(int buildingId)
+    public Task<Measurement> GetMeasurementAsync(int measurementId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<Building>> GetBuildingsAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Building> UpdateBuildingAsync(int buildingId, BuildingCreationDTO buildingCreationDTO)
+    public Task<List<Measurement>> GetMeasurementsAsync()
     {
         throw new NotImplementedException();
     }
