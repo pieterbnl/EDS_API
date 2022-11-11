@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="Entities\Configurations\" />
     <Folder Include="Entities\Seeding\" />
-    <Folder Include="Utilities\" />
   </ItemGroup>
 
 </Project>
