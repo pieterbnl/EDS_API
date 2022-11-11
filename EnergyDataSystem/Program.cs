@@ -28,7 +28,7 @@ builder.Services.AddDbContext<ApplicationDbContext>
 
 
 // Trigger creation of Automapper maps specified in AutoMapperProfiles.cs
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+// builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 

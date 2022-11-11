@@ -15,6 +15,7 @@ public class EnergyMeter
     public EnergyMeterType Type { get; set; } // For example: "Electricity", "Gas", "Heat", ...
     public EnergyMeterCapacity Capacity { get; set; } // For example: "high capacity", "low capcity"    
     public EnergyMeterMeasurementUnit Unit { get; set; } // For example: "kWH", "m3", "liter", ...
+    public int BuildingId { get; set; } // An energy meter is part of a building
 
     // Navigation properties
     public Building Building { get; set; } // An energy meter can belong to one building only

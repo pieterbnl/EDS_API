@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EnergyDataSystem.Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +27,12 @@ public class ApplicationDbContext : DbContext
     }
 
     // DbSets for each table
-   /* public DbSet<Customer> Customers { get; set; }
-    public DbSet<Owner> Owners { get; set; }    
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Building> Buildings { get; set; }
     public DbSet<BuildingGroup> BuildingGroups { get; set; }
-    public DbSet<EnergyConnection> EnergyConnections { get; set; }
-    public DbSet<EnergyConnectionType> EnergyConnectionTypes { get; set; }*/
+    public DbSet<Contact> Contacts { get; set; }
+    public DbSet<Email> Emails { get; set; }
+    public DbSet<EnergyMeter> EnergyMeters { get; set; }
+    public DbSet<Owner> Owners { get; set; }
+    public DbSet<Phonenumber> Phonenumbers { get; set; }
 }

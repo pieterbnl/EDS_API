@@ -9,10 +9,10 @@ namespace EnergyDataSystem.Entities.Models;
 public class Owner
 {
     public int Id { get; set; }
-    public string CompanyName { get; set; }
+    public string CompanyName { get; set; }    
 
     // Navigation properties
-    public ICollection<Address> Address { get; set; } // Owner can habe multiple addresses
-    public  ICollection<Contact> Contacts { get; set; } // Owner can have multiple contacts
+    public Address Address { get; set; }
+    public ICollection<Contact> Contacts { get; set; }    
     public ICollection<BuildingGroup> BuildingGroups { get; set; } // Owner can own multiple building groups, each containing one or more buildings
 }

@@ -15,4 +15,8 @@ public class Address
     public string StreetNumber { get; set; }
     public string PostalCode { get; set; }
     public string City { get; set; }
+
+    // Navigation properties
+    public Building Building { get; set; } // A single address can only belong to a single building
+
 }
