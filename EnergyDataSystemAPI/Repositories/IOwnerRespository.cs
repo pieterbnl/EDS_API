@@ -10,11 +10,11 @@ namespace EnergyDataSystem.Repositories;
 
 public interface IOwnerRepository
 {
-    Task<List<Owner>> GetContactsAsync();
-    Task<Owner> GetContactAsync(int ownerId);
-    Task<Owner> CreateContactAsync(Owner owner);
-    Task<Owner> UpdateContactAsync(int ownerId, OwnerCreationDTO ownerCreationDTO);
-    Task<Owner> DeleteContactAsync(int ownerId);
+    Task<List<Owner>> GetOwnersAsync();
+    Task<Owner> GetOwnerAsync(int ownerId);
+    Task<Owner> CreateOwnerAsync(Owner owner);
+    Task<Owner> UpdateOwnerAsync(int ownerId, OwnerCreationDTO ownerCreationDTO);
+    Task<Owner> DeleteOwnerAsync(int ownerId);
     //Task<Building> SoftDeleteOwnerAsync(int ownerId);
     //Task<bool> Exists(int ownerId);
 }

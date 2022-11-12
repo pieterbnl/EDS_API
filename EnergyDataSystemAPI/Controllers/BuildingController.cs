@@ -30,7 +30,6 @@ namespace EnergyDataSystemAPI.Controllers
             var buildings = await _buildingRepository.GetBuildingsAsync();
 
             return Ok(_mapper.Map<List<BuildingDTO>>(buildings));
-        }
-        
+        }        
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EnergyDataSystem.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnergyDataSystem.DTOs;
+namespace EnergyDataSystemAPI.Temp;
 public class ContactDTO
 {
     public int Id { get; set; }

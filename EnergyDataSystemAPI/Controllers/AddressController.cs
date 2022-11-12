@@ -39,10 +39,14 @@ public class AddressController : ControllerBase
     {
         var address = await _addressRepository.GetAddressAsync(addressId);
 
-        if (address == null) return NotFound();
-
-        //return Ok(booking);
-        return Ok(_mapper.Map<AddressDTO>(address));
+        if (address == null)
+        {
+            return NotFound();
+        }
+        else
+        {
+            return Ok(_mapper.Map<AddressDTO>(address));
+        }
     }
 
     // POST api/addresses

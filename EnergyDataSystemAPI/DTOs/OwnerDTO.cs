@@ -10,6 +10,6 @@ public class OwnerDTO
     public int Id { get; set; }
     public string CompanyName { get; set; }
     public AddressDTO Address { get; set; }
-    public ContactDTO Contact { get; set; }
+    /*public ContactDTO Contact { get; set; }*/
     public ICollection<BuildingGroupDTO> BuildingGroups { get; set; }
 }

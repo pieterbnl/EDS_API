@@ -14,9 +14,10 @@ public class AutoMapperProfiles : Profile
     public AutoMapperProfiles()
     {
         CreateMap<Owner, OwnerDTO>()
-             .ForMember(dto => dto.BuildingGroups,
-                ent => ent.MapFrom(p => p.BuildingGroups
-                .OrderByDescending(b => b.Name)));
+            .ReverseMap();
+        /*.ForMember(dto => dto.BuildingGroups,
+           ent => ent.MapFrom(p => p.BuildingGroups
+           .OrderByDescending(b => b.Name)));*/
 
         CreateMap<Address, AddressDTO>()
             .ReverseMap();

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnergyDataSystem.DTOs;
+namespace EnergyDataSystemAPI.Temp;
 public class ContactCreationDTO
 {
     public int Id { get; set; }

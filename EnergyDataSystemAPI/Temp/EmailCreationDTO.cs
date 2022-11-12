@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnergyDataSystem.DTOs;
+namespace EnergyDataSystemAPI.Temp;
 public class EmailCreationDTO
 {
     public int Id { get; set; }
     public string Address { get; set; }
-    public int ContactId { get; set; }
+    /*public int ContactId { get; set; }*/
 }
