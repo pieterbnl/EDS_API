@@ -24,24 +24,77 @@ public class SqlAddressRepository : IAddressRepository
 
     public async Task<List<Address>> GetAddressesAsync()
     {
-        return await _context.Addresses.ToListAsync();
+        return await _context.Addresses
+            .ToListAsync();
     }
 
-    public Task<Address> GetAddressAsync(int addressId)
+    public async Task<Address> GetAddressAsync(int addressId)
     {
-        throw new NotImplementedException();
-    }
-    public Task<Address> CreateAddressAsync(Address address)
-    {
-        throw new NotImplementedException();
+        return await _context.Addresses
+            .FirstOrDefaultAsync(a => a.Id == addressId);
     }
 
-    public Task<Address> DeleteAddressAsync(int addressId)
+    public async Task<Address> CreateAddressAsync(Address address)
     {
-        throw new NotImplementedException();
+        var newAddress = await _context.Addresses.AddAsync(address);
+        await _context.SaveChangesAsync();
+
+        return newAddress.Entity;
     }
-    public Task<Address> UpdateAddressAsync(int addressId, AddressCreationDTO addressCreationDTO)
+
+    public async Task<Address> UpdateAddressAsync(int addressId, AddressCreationDTO addressCreationDTO)
     {
-        throw new NotImplementedException();
+        var existingAddress = await GetAddressAsync(addressId);
+
+        if (existingAddress == null)
+        {
+            return null;
+        }
+        else
+        {
+            existingAddress = _mapper.Map(addressCreationDTO, existingAddress);
+            await _context.SaveChangesAsync();
+        }
+
+        return existingAddress;
+    }
+
+    public async Task<Address> DeleteAddressAsync(int addressId)
+    {
+        var addressToDelete = await GetAddressAsync(addressId);
+
+        if (addressToDelete == null)
+        {
+            return null;
+        }
+        else
+        {
+            _context.Addresses.Remove(addressToDelete);
+            await _context.SaveChangesAsync();
+        }
+
+        return addressToDelete;
+    }
+
+    /*public async Task<Address> SoftDeleteAddressAsync(int addressId)
+    {
+        var addressToDelete = await GetAddressAsync(addressId);
+
+        if (addressToDelete == null)
+        {
+            return null;
+        }
+        else
+        {
+            addressToDelete.IsDeleted = true;
+            await _context.SaveChangesAsync();
+        }
+
+        return addressToDelete;
+    }*/
+
+    public async Task<bool> Exists(int addressId)
+    {
+        return await _context.Addresses.AnyAsync(a => a.Id == addressId);
     }
 }

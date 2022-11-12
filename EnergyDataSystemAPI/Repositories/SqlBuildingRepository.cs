@@ -23,7 +23,12 @@ public class SqlBuildingRepository : IBuildingRepository
     
     public async Task<List<Building>> GetBuildingsAsync()
     {
-        return await _context.Buildings.ToListAsync();
+        return await _context.Buildings
+            .Include(b => b.Address)
+            .Include(b => b.BuildingGroup)
+            .Include(b => b.BuildingGroup.Owner)
+            .Include(b => b.EnergyMeters)
+            .ToListAsync();
     }
     public Task<Building> GetBuildingAsync(int buildingId)
     {
