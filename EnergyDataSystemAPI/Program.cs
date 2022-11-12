@@ -22,6 +22,7 @@ builder.Services.AddDbContext<ApplicationDbContext>
 
 // Inject dependencies - implementation of the repo's when called
 builder.Services.AddScoped<IAddressRepository, SqlAddressRepository>();
+builder.Services.AddScoped<IBuildingRepository, SqlBuildingRepository>();
 
 // Trigger creation of Automapper maps specified in AutoMapperProfiles.cs
 builder.Services.AddAutoMapper(typeof(Program).Assembly);

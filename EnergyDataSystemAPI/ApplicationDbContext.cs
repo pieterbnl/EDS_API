@@ -30,10 +30,11 @@ public class ApplicationDbContext : DbContext
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Building> Buildings { get; set; }
     public DbSet<BuildingGroup> BuildingGroups { get; set; }
-    public DbSet<Contact> Contacts { get; set; }
-    public DbSet<Email> Emails { get; set; }
-    public DbSet<EnergyMeter> EnergyMeters { get; set; }
     public DbSet<Owner> Owners { get; set; }
-    public DbSet<Phonenumber> Phonenumbers { get; set; }
+    public DbSet<EnergyMeter> EnergyMeters { get; set; }        
     public DbSet<Measurement> Measurements { get; set; }
+
+    /*public DbSet<Contact> Contacts { get; set; }
+    public DbSet<Email> Emails { get; set; }
+    public DbSet<Phonenumber> Phonenumbers { get; set; }*/
 }

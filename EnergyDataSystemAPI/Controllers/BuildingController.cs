@@ -1,83 +1,36 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using EnergyDataSystem;
+using EnergyDataSystem.DTOs;
+using EnergyDataSystem.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EnergyDataSystemAPI.Controllers
 {
+    [ApiController]
+    [Route("api/buildings")]
     public class BuildingController : Controller
     {
-        // GET: BuildingController
-        public ActionResult Index()
+        private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
+        private readonly IBuildingRepository _buildingRepository;
+
+        public BuildingController(ApplicationDbContext context, IMapper mapper, IBuildingRepository buildingRepository)
         {
-            return View();
+            _context = context;
+            _mapper = mapper;
+            _buildingRepository = buildingRepository;
         }
 
-        // GET: BuildingController/Details/5
-        public ActionResult Details(int id)
+        // GET: api/buildings
+        [HttpGet]
+        [Route("")]
+        public async Task<IActionResult> GetBuildings()
         {
-            return View();
-        }
+            var buildings = await _buildingRepository.GetBuildingsAsync();
 
-        // GET: BuildingController/Create
-        public ActionResult Create()
-        {
-            return View();
+            return Ok(_mapper.Map<List<BuildingDTO>>(buildings));
         }
-
-        // POST: BuildingController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: BuildingController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: BuildingController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: BuildingController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: BuildingController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

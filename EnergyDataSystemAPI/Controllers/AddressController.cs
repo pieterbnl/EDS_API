@@ -14,11 +14,11 @@ public class AddressController : ControllerBase
     private readonly IMapper _mapper;
     private readonly IAddressRepository _addressRepository;
     
-    public AddressController(ApplicationDbContext _context, IMapper _mapper, IAddressRepository _addressRepository)
+    public AddressController(ApplicationDbContext context, IMapper mapper, IAddressRepository addressRepository)
     {
-        this._context = _context;
-        this._mapper = _mapper;
-        this._addressRepository = _addressRepository;
+        this._context = context;
+        this._mapper = mapper;
+        this._addressRepository = addressRepository;
     }
 
     // GET api/addresses
@@ -26,7 +26,7 @@ public class AddressController : ControllerBase
     [Route("")]
     public async Task<IActionResult> GetAddresses()
     {
-        var addresses = await _addressRepository.GetAddressesAsync();
+        var addresses = await _addressRepository.GetAddressesAsync();        
 
         return Ok(_mapper.Map<List<AddressDTO>>(addresses));
     }

@@ -1,12 +1,11 @@
 ﻿using EnergyDataSystem.DTOs;
-using EnergyDataSystem.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnergyDataSystem.Repositories;
+namespace EnergyDataSystemAPI.Temp;
 
 public class SqlPhonenumberRepository : IPhonenumberRepository
 {

@@ -25,13 +25,7 @@ public class AutoMapperProfiles : Profile
             .ReverseMap();
 
         CreateMap<BuildingGroup, BuildingGroupDTO>()
-            .ReverseMap();
-
-        CreateMap<Contact, ContactDTO>()
-            .ReverseMap();
-
-        CreateMap<Email, EmailDTO>()
-            .ReverseMap();
+            .ReverseMap();        
 
         CreateMap<EnergyMeter, EnergyMeterDTO>()
             .ReverseMap();
@@ -42,16 +36,23 @@ public class AutoMapperProfiles : Profile
         CreateMap<Owner, OwnerDTO>()
             .ReverseMap();
 
-        CreateMap<Phonenumber, PhonenumberDTO>()
+        /*CreateMap<Contact, ContactDTO>()
             .ReverseMap();
+
+        CreateMap<Email, EmailDTO>()
+            .ReverseMap();
+
+        CreateMap<Phonenumber, PhonenumberDTO>()
+            .ReverseMap();*/
 
         CreateMap<AddressCreationDTO, Address>();
         CreateMap<BuildingCreationDTO, Building>();
-        CreateMap<BuildingGroupCreationDTO, BuildingGroup>();
-        CreateMap<ContactCreationDTO, Contact>();
-        CreateMap<EmailCreationDTO, Email>();
+        CreateMap<BuildingGroupCreationDTO, BuildingGroup>();        
         CreateMap<EnergyMeterCreationDTO, EnergyMeter>();
         CreateMap<OwnerCreationDTO, Owner>();
-        CreateMap<PhonenumberCreationDTO, Phonenumber>();
+
+        /*CreateMap<ContactCreationDTO, Contact>();
+        CreateMap<EmailCreationDTO, Email>();
+        CreateMap<PhonenumberCreationDTO, Phonenumber>();*/
     }
 }
