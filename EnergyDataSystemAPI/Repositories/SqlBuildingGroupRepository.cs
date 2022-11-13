@@ -1,5 +1,8 @@
-﻿using EnergyDataSystem.DTOs;
+﻿using AutoMapper;
+using EnergyDataSystem.DTOs;
 using EnergyDataSystem.Entities.Models;
+using EnergyDataSystemAPI.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +13,90 @@ namespace EnergyDataSystem.Repositories;
 
 public class SqlBuildingGroupRepository : IBuildingGroupRepository
 {
-    public Task<BuildingGroup> CreateBuildingGroupAsync(BuildingGroup buildingGroup)
+    private readonly ApplicationDbContext _context;
+    private readonly IMapper _mapper;
+
+    public SqlBuildingGroupRepository(ApplicationDbContext context, IMapper mapper)
     {
-        throw new NotImplementedException();
+        _context = context;
+        _mapper = mapper;
     }
 
-    public Task<BuildingGroup> DeleteBuildingGroupAsync(int buildingGroupdId)
+    public async Task<List<BuildingGroup>> GetBuildingGroupsAsync()
     {
-        throw new NotImplementedException();
+        return await _context.BuildingGroups
+            .Include(bg => bg.Buildings)
+            .ToListAsync();
     }
 
-    public Task<BuildingGroup> GetBuildingGroupAsync(int buildingGroupId)
+    public async Task<BuildingGroup> GetBuildingGroupAsync(int buildingGroupId)
     {
-        throw new NotImplementedException();
+        return await _context.BuildingGroups
+            .Include(bg => bg.Buildings)
+            .FirstOrDefaultAsync(bg => bg.Id == buildingGroupId);
     }
 
-    public Task<List<BuildingGroup>> GetBuildingGroupsAsync()
+    public async Task<BuildingGroup> CreateBuildingGroupAsync(BuildingGroup buildingGroup)
     {
-        throw new NotImplementedException();
+        var newBuildingGroup = await _context.BuildingGroups.AddAsync(buildingGroup);
+        await _context.SaveChangesAsync();
+
+        return newBuildingGroup.Entity;
     }
 
-    public Task<BuildingGroup> UpdateBuildingGroupAsync(int buildingGroupId, BuildingGroupCreationDTO buildingGroupCreationDTO)
+    public async Task<BuildingGroup> UpdateBuildingGroupAsync(int buildingGroupId, BuildingGroupCreationDTO buildingGroupCreationDTO)
     {
-        throw new NotImplementedException();
+        var existingBuildingGroup = await GetBuildingGroupAsync(buildingGroupId);
+
+        if (existingBuildingGroup == null)
+        {
+            return null;
+        }
+        else
+        {
+            existingBuildingGroup = _mapper.Map(buildingGroupCreationDTO, existingBuildingGroup);
+            await _context.SaveChangesAsync();
+        }
+
+        return existingBuildingGroup;
+    }
+
+    public async Task<BuildingGroup> DeleteBuildingGroupAsync(int buildingGroupId)
+    {
+        var buildingGroupToDelete = await GetBuildingGroupAsync(buildingGroupId);
+
+        if (buildingGroupToDelete == null)
+        {
+            return null;
+        }
+        else
+        {
+            _context.BuildingGroups.Remove(buildingGroupToDelete);
+            await _context.SaveChangesAsync();
+        }
+
+        return buildingGroupToDelete;
+    }
+
+    /*public async Task<BuildingGroup> SoftDeleteBuildingGroupAsync(int buildingGroupId)
+    {
+        var buildingGroupToDelete = await GetBuildingGroupAsync(buildingGroupId);
+
+        if (buildingGroupToDelete == null)
+        {
+            return null;
+        }
+        else
+        {
+            buildingGroupToDelete.IsDeleted = true;
+            await _context.SaveChangesAsync();
+        }
+
+        return buildingGroupToDelete;
+    }*/
+
+    public async Task<bool> Exists(int buildingGroupId)
+    {
+        return await _context.BuildingGroups.AnyAsync(a => a.Id == buildingGroupId);
     }
 }

@@ -12,29 +12,26 @@ namespace EnergyDataSystem.Utilities;
 public class AutoMapperProfiles : Profile
 {
     public AutoMapperProfiles()
-    {
+    {        
+        CreateMap<Address, AddressDTO>()
+            .ReverseMap();
+
         CreateMap<Owner, OwnerDTO>()
             .ReverseMap();
         /*.ForMember(dto => dto.BuildingGroups,
            ent => ent.MapFrom(p => p.BuildingGroups
            .OrderByDescending(b => b.Name)));*/
 
-        CreateMap<Address, AddressDTO>()
-            .ReverseMap();
-
-        CreateMap<Building, BuildingDTO>()
-            .ReverseMap();
-
         CreateMap<BuildingGroup, BuildingGroupDTO>()
+            .ReverseMap();
+        
+        CreateMap<Building, BuildingDTO>()
             .ReverseMap();        
 
         CreateMap<EnergyMeter, EnergyMeterDTO>()
             .ReverseMap();
 
         CreateMap<Measurement, MeasurementDTO>()
-            .ReverseMap();
-
-        CreateMap<Owner, OwnerDTO>()
             .ReverseMap();
 
         /*CreateMap<Contact, ContactDTO>()

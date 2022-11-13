@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EnergyDataSystem.DTOs;
 using EnergyDataSystem.Entities.Models;
+using EnergyDataSystemAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

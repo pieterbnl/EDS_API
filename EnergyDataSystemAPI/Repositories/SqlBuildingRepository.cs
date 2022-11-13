@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EnergyDataSystem.DTOs;
 using EnergyDataSystem.Entities.Models;
+using EnergyDataSystemAPI.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,23 +31,75 @@ public class SqlBuildingRepository : IBuildingRepository
             .Include(b => b.EnergyMeters)
             .ToListAsync();
     }
-    public Task<Building> GetBuildingAsync(int buildingId)
+    public async Task<Building> GetBuildingAsync(int buildingId)
     {
-        throw new NotImplementedException();
-    }
-       
-    public Task<Building> CreateBuildingAsync(Building building)
-    {
-        throw new NotImplementedException();
+        return await _context.Buildings
+            .Include(o => o.Address)
+            .Include(o => o.BuildingGroup)
+            .FirstOrDefaultAsync(o => o.Id == buildingId);
     }
 
-    public Task<Building> DeleteBuildingAsync(int buildingId)
+    public async Task<Building> CreateBuildingAsync(Building building)
     {
-        throw new NotImplementedException();
-    }    
+        var newBuilding = await _context.Buildings.AddAsync(building);
+        await _context.SaveChangesAsync();
 
-    public Task<Building> UpdateBuildingAsync(int buildingId, BuildingCreationDTO buildingCreationDTO)
+        return newBuilding.Entity;
+    }
+
+    public async Task<Building> UpdateBuildingAsync(int buildingId, BuildingCreationDTO buildingCreationDTO)
     {
-        throw new NotImplementedException();
+        var existingBuilding = await GetBuildingAsync(buildingId);
+
+        if (existingBuilding == null)
+        {
+            return null;
+        }
+        else
+        {
+            existingBuilding = _mapper.Map(buildingCreationDTO, existingBuilding);
+            await _context.SaveChangesAsync();
+        }
+
+        return existingBuilding;
+    }
+
+    public async Task<Building> DeleteBuildingAsync(int buildingId)
+    {
+        var ownerToDelete = await GetBuildingAsync(buildingId);
+
+        if (ownerToDelete == null)
+        {
+            return null;
+        }
+        else
+        {
+            _context.Buildings.Remove(ownerToDelete);
+            await _context.SaveChangesAsync();
+        }
+
+        return ownerToDelete;
+    }
+
+    /*public async Task<Building> SoftDeleteBuildingAsync(int buildingId)
+    {
+        var ownerToDelete = await GetBuildingsAsync(buildingId);
+
+        if (ownerToDelete == null)
+        {
+            return null;
+        }
+        else
+        {
+            ownerToDelete.IsDeleted = true;
+            await _context.SaveChangesAsync();
+        }
+
+        return ownerToDelete;
+    }*/
+
+    public async Task<bool> Exists(int buildingId)
+    {
+        return await _context.Buildings.AnyAsync(o => o.Id == buildingId);
     }
 }

@@ -2,20 +2,20 @@
 using EnergyDataSystem;
 using EnergyDataSystem.DTOs;
 using EnergyDataSystem.Entities.Models;
-using EnergyDataSystem.Repositories;
+using EnergyDataSystemAPI.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EnergyDataSystemAPI.Controllers;
 
 [ApiController]
 [Route("api/addresses")]
-public class AddressController : ControllerBase
+public class AddressesController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;
     private readonly IAddressRepository _addressRepository;
     
-    public AddressController(ApplicationDbContext context, IMapper mapper, IAddressRepository addressRepository)
+    public AddressesController(ApplicationDbContext context, IMapper mapper, IAddressRepository addressRepository)
     {
         this._context = context;
         this._mapper = mapper;

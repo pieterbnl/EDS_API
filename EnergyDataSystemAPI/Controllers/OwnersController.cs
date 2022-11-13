@@ -2,7 +2,7 @@
 using EnergyDataSystem;
 using EnergyDataSystem.DTOs;
 using EnergyDataSystem.Entities.Models;
-using EnergyDataSystem.Repositories;
+using EnergyDataSystemAPI.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EnergyDataSystemAPI.Controllers;
@@ -13,13 +13,13 @@ public class OwnersController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;
-    private readonly IOwnerRepository _ownersRepository;
+    private readonly IOwnerRepository _ownerRepository;
     
-    public OwnersController(ApplicationDbContext context, IMapper mapper, IOwnerRepository ownersRepository)
+    public OwnersController(ApplicationDbContext context, IMapper mapper, IOwnerRepository ownerRepository)
     {
         this._context = context;
         this._mapper = mapper;
-        this._ownersRepository = ownersRepository;
+        this._ownerRepository = ownerRepository;
     }
 
     // GET api/owners
@@ -27,7 +27,7 @@ public class OwnersController : ControllerBase
     [Route("")]
     public async Task<IActionResult> GetOwners()
     {
-        var owners = await _ownersRepository.GetOwnersAsync();        
+        var owners = await _ownerRepository.GetOwnersAsync();        
 
         return Ok(_mapper.Map<List<OwnerDTO>>(owners));
     }
@@ -37,7 +37,7 @@ public class OwnersController : ControllerBase
     [HttpGet("{ownerId:int}")]
     public async Task<IActionResult> GetOwner([FromRoute] int ownerId)
     {
-        var owner = await _ownersRepository.GetOwnerAsync(ownerId);
+        var owner = await _ownerRepository.GetOwnerAsync(ownerId);
 
         if (owner == null)
         {
@@ -54,7 +54,7 @@ public class OwnersController : ControllerBase
     [Route("")]
     public async Task<IActionResult> CreateOwner([FromBody] OwnerCreationDTO ownerCreationDTO)
     {
-        var newOwner = await _ownersRepository.CreateOwnerAsync(_mapper.Map<Owner>(ownerCreationDTO));
+        var newOwner = await _ownerRepository.CreateOwnerAsync(_mapper.Map<Owner>(ownerCreationDTO));
         
         return CreatedAtAction(
             nameof(GetOwner),
@@ -67,7 +67,7 @@ public class OwnersController : ControllerBase
     [Route("{ownerId:int}")]
     public async Task<IActionResult> UpdateOwner([FromRoute] int ownerId, [FromBody] OwnerCreationDTO ownerCreationDTO)
     {
-        var updatedOwner = await _ownersRepository.UpdateOwnerAsync(ownerId, ownerCreationDTO);
+        var updatedOwner = await _ownerRepository.UpdateOwnerAsync(ownerId, ownerCreationDTO);
 
         if (updatedOwner == null)
         {
@@ -84,7 +84,7 @@ public class OwnersController : ControllerBase
     [Route("{ownerId:int}")]
     public async Task<IActionResult> DeleteOwner([FromRoute] int ownerId)
     {
-        var deletedOwner = await _ownersRepository.DeleteOwnerAsync(ownerId);
+        var deletedOwner = await _ownerRepository.DeleteOwnerAsync(ownerId);
 
         if (deletedOwner == null)
         {
@@ -101,7 +101,7 @@ public class OwnersController : ControllerBase
         [Route("softdelete/{ownerId:int}")]
         public async Task<IActionResult> SoftDeleteOwner([FromRoute] int ownerId)
         {
-            var softDeletedOwner = await _ownersRepository.SoftDeleteOwnerAsync(ownerId);
+            var softDeletedOwner = await _ownerRepository.SoftDeleteOwnerAsync(ownerId);
 
             if (softDeletedOwner == null)
             {

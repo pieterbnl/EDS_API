@@ -1,5 +1,6 @@
 ﻿using EnergyDataSystem.DTOs;
 using EnergyDataSystem.Entities.Models;
+using EnergyDataSystemAPI.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnergyDataSystem.Repositories;
+namespace EnergyDataSystemAPI.Repositories.Contracts;
 
 public interface IAddressRepository
 {
