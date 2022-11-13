@@ -79,9 +79,9 @@ public class SqlEnergyMeterRepository : IEnergyMeterRepository
         return energyMeterToDelete;
     }
 
-    /*public async Task<EnergyMeter> SoftDeleteEnergyMEterAsync(int energyMeterId)
+    /*public async Task<EnergyMeter> SoftDeleteEnergyMeterAsync(int energyMeterId)
     {
-        var energyMeterToDelete = await GetEnergyMetersAsync(energyMeterId);
+        var energyMeterToDelete = await GetEnergyMeterAsync(energyMeterId);
 
         if (energyMeterToDelete == null)
         {

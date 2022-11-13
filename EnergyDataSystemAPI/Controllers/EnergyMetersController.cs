@@ -65,7 +65,7 @@ namespace EnergyDataSystemAPI.Controllers
         // PUT api/energyMeters/3
         [HttpPut]
         [Route("{energyMeterId:int}")]
-        public async Task<IActionResult> UpdateBuilding([FromRoute] int energyMeterId, [FromBody] EnergyMeterCreationDTO energyMeterDTO)
+        public async Task<IActionResult> UpdateEnergyMeter([FromRoute] int energyMeterId, [FromBody] EnergyMeterCreationDTO energyMeterDTO)
         {
             var updatedEnergyMeter = await _energyMeterRepository.UpdateEnergyMeterAsync(energyMeterId, energyMeterDTO);
 

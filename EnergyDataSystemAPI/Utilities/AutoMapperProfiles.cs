@@ -48,6 +48,7 @@ public class AutoMapperProfiles : Profile
         CreateMap<BuildingGroupCreationDTO, BuildingGroup>();        
         CreateMap<EnergyMeterCreationDTO, EnergyMeter>();
         CreateMap<OwnerCreationDTO, Owner>();
+        CreateMap<MeasurementCreationDTO, Measurement>();
 
         /*CreateMap<ContactCreationDTO, Contact>();
         CreateMap<EmailCreationDTO, Email>();

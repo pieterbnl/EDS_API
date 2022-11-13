@@ -36,6 +36,8 @@ public class SqlBuildingRepository : IBuildingRepository
         return await _context.Buildings
             .Include(b => b.Address)
             .Include(b => b.BuildingGroup)
+            .Include(b => b.BuildingGroup.Owner)
+            .Include(b => b.EnergyMeters)
             .FirstOrDefaultAsync(b => b.Id == buildingId);
     }
 
