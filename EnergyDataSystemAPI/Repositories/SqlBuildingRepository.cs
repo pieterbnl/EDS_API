@@ -34,9 +34,9 @@ public class SqlBuildingRepository : IBuildingRepository
     public async Task<Building> GetBuildingAsync(int buildingId)
     {
         return await _context.Buildings
-            .Include(o => o.Address)
-            .Include(o => o.BuildingGroup)
-            .FirstOrDefaultAsync(o => o.Id == buildingId);
+            .Include(b => b.Address)
+            .Include(b => b.BuildingGroup)
+            .FirstOrDefaultAsync(b => b.Id == buildingId);
     }
 
     public async Task<Building> CreateBuildingAsync(Building building)
@@ -66,36 +66,36 @@ public class SqlBuildingRepository : IBuildingRepository
 
     public async Task<Building> DeleteBuildingAsync(int buildingId)
     {
-        var ownerToDelete = await GetBuildingAsync(buildingId);
+        var buildingToDelete = await GetBuildingAsync(buildingId);
 
-        if (ownerToDelete == null)
+        if (buildingToDelete == null)
         {
             return null;
         }
         else
         {
-            _context.Buildings.Remove(ownerToDelete);
+            _context.Buildings.Remove(buildingToDelete);
             await _context.SaveChangesAsync();
         }
 
-        return ownerToDelete;
+        return buildingToDelete;
     }
 
     /*public async Task<Building> SoftDeleteBuildingAsync(int buildingId)
     {
-        var ownerToDelete = await GetBuildingsAsync(buildingId);
+        var buildingToDelete = await GetBuildingsAsync(buildingId);
 
-        if (ownerToDelete == null)
+        if (buildingToDelete == null)
         {
             return null;
         }
         else
         {
-            ownerToDelete.IsDeleted = true;
+            buildingToDelete.IsDeleted = true;
             await _context.SaveChangesAsync();
         }
 
-        return ownerToDelete;
+        return buildingToDelete;
     }*/
 
     public async Task<bool> Exists(int buildingId)

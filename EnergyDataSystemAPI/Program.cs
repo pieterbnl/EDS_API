@@ -26,6 +26,8 @@ builder.Services.AddScoped<IAddressRepository, SqlAddressRepository>();
 builder.Services.AddScoped<IOwnerRepository, SqlOwnerRepository>();
 builder.Services.AddScoped<IBuildingGroupRepository, SqlBuildingGroupRepository>();
 builder.Services.AddScoped<IBuildingRepository, SqlBuildingRepository>();
+builder.Services.AddScoped<IEnergyMeterRepository, SqlEnergyMeterRepository>();
+builder.Services.AddScoped<IMeasurementRepository, SqlMeasurementRepository>();
 
 // Trigger creation of Automapper maps specified in AutoMapperProfiles.cs
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
