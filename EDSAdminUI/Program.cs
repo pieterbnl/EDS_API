@@ -1,13 +1,22 @@
-using EDSAdminUI.Data;
+﻿using EDSAdminUI.Data;
+using EDSAdminUI.Repositories;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<EDSAdminUIContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EDSAdminUIContext") ?? throw new InvalidOperationException("Connection string 'EDSAdminUIContext' not found.")));
 builder.Services.AddServerSideBlazor();
+
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddSingleton<AddressService>();
+
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
